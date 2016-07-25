@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+</head>
+<body>
+  <div id="main" class="container">
+    <table class="zui-table zui-table-rounded">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tr></tr>
+  <!-- ko foreach: products -->
+      <tr>
+        <td>
+          <p><b data-bind="text: name"></b></p>
+          <p>Price:</i>
+          <p><b data-bind="text: price "></b></p>
+          <p data-bind="text: description"></p>
+        </td>
+        <td>
+          <button data-bind="click: $parent.beginEdit" class="btn btn-default btn-lg btn-border">Edit</button>
+          <button data-bind="click: $parent.remove" class="btn btn-default btn-lg btn-border">Delete</button>
+        </td>
+      </tr>
+  <!-- /ko -->
+      </table>
+      <button data-bind="click: beginAdd" class="btn btn-default btn-lg btn-border">Add Product</button>
+  </div>
+<!-- Dialog box with a form inside to enter product information-->    
+    <div id="add" class="modal hide fade" tabindex="=1" role="dialog" aria-labelledby="addDialogLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="addDialogLabel">Add Product</h3>
+    </div>
+    <div class="modal-body">
+      <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="inputProduct">Product</label>
+          <div class="controls">
+            <input data-bind="value: name" type="text" id="inputProduct" placeholder="Product name" style="width: 150px;">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputDescription">Description</label>
+          <div class="controls">
+            <input data-bind="value: description" type="text" id="inputDescription" placeholder="Description" style="width: 300px;">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="inputPrice">Price</label>
+          <div class="controls">
+            <input data-bind="value: price" type="text" id="inputPrice" placeholder="Product price" style="width: 150px;">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button data-bind="click: addProduct" class="btn btn-default btn-lg btn-border">Add Product</button>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
